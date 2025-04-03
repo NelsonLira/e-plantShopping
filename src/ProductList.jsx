@@ -311,7 +311,9 @@ function ProductList({ onHomeClick }) {
                                     <div className="product-description">{plant.description}</div>
                                     <div className="product-price">{plant.cost}</div>
                                     {/*Similarly like the above plant.name show other details like description and cost*/}
-                                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    <button  className="product-button" onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]}>
+                                        {addedToCart[plant.name] ? "Added to cart" : "Add to cart"}
+                                    </button>
                                 </div>
                                 ))}
                             </div>
@@ -320,7 +322,7 @@ function ProductList({ onHomeClick }) {
 
                 </div>
             ) : (
-                <CartItem onContinueShopping={handleContinueShopping} />
+                <CartItem onContinueShopping={handleContinueShopping} setAddedToCart={setAddedToCart} />
             )}
         </div>
     );
